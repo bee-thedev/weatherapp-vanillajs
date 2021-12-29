@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald:wght@600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+  }
+
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: rgb(11, 152, 233);
+  }
+
+/* ----- Styling for the Main Container ------*/
+
+  .container{
+    width: 400px;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    box-shadow:  7px 7px 20px rgba(0,0,0,0.1);;
+  }
+
+
+/*------------ The HEADER of the Main Container--------*/
+
+  .container header {
+      display: flex;
+      align-items: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: firebrick;
+      padding: 16px 15px;
+      border-bottom: 1px solid #ccc;
+  }
+
+  header i{
+      cursor: pointer;
+      margin-right: 8px;
+      font-size: 0em;
+  }
+
+ .container.active header i{
+    margin-left: 5px;
+    font-size: 30px;
+ }
+
+ .container .input-details{
+     margin: 20px 25px 30px;
+ }
+ 
+/* .container.active .input-details{
+    display: none;
+} */
+
+.input-details .input-text{
+    /* display: none; */
+    font-size: 1rem;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+
+.input-details .input-text.error{
+    display: block;
+    color: rgb(41, 8, 8);
+    background: rgb(175, 129, 129);
+    border: 1px solid #f5c6cb;
+}
+
+.input-details .input-text.pending{
+    color: #4ba4b4;
+    display: block;
+    background: #d1ecf1;
+    border: 1px solid #bee5eb;
+}
+
+.input-details :where(input, button){
+    width: 100%;
+    height: 55px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.input-details input{
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 0px 10px;
+}
+
+.input-details input:is(:focus, :valid){
+    border: 2px solid rgb(11, 152, 233);
+}
+
+.input-details input::placeholder{
+    color: #a09e9e;
+}
+
+.input-details .separator{
+    width: 100%;
+    height: 0;
+    margin: 25px 0;
+    background:#b3b3b3;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separator::before{
+    content: "or";
+    color: #b3b3b3;
+    font-size: 1rem;
+    padding: 0 15px;
+    background: ghostwhite;
+}
+
+.input-details button{
+    color: #fff;
+    cursor: pointer;
+    background: #4ba4b4;
+    transition: 0.3s ease;
+}
+
+.input-details button:hover{
+        background: #1a8fe4;  
+}
