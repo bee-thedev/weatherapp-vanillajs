@@ -52,9 +52,9 @@
      margin: 20px 25px 30px;
  }
  
-/* .container.active .input-details{
+.container.active .input-details{
     display: none;
-} */
+}
 
 .input-details .input-text{
     /* display: none; */
@@ -154,6 +154,82 @@
 
 .weather-detail .temperature{
     display: flex;
-    font-weight: 800;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.weather-detail .temperature .value{
+    font-weight: 500;
+} 
+
+.weather-detail .temperature .degrees{
+    font-size: 40px;
+    display: block;
+    margin: 10px 5px 0 0;
+}
+
+.weather-detail .weather{
+    font-size: 18px;
+    text-align: center;
+    margin: -5px 20px 15px;
+}
+
+.weather-detail .location{
+    display: flex;
+    font-size: 18px;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.location i{
+    font-size: 20px;
+    margin: 4px 5px 0 0;
+}
+
+.weather-detail .weather-bottom{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+}
+
+.weather-bottom .column{
+    display: flex;
+    width: 100%;
+    padding: 15px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.column i{
+    color:firebrick;
     font-size: 60px;
+}
+
+.column.humidity{
+    border-left: 1px solid #ccc;
+}
+
+
+.details .temperature, .humidity span{
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: -3px;
+}
+
+.details .temperature .degrees{
+    margin:0;
+    font-size: 8px;
+    padding: 0 2px 0 1px;
+}
+
+.column .details p{
+    font-size: 14px;
+    margin-top: -6px;
+}
+
+.humidity span{
+    font-size: 37px;
 }
