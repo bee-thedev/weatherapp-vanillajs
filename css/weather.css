@@ -165,7 +165,7 @@
 .weather-detail .temperature .degrees{
     font-size: 40px;
     display: block;
-    margin: 10px 5px 0 0;
+    margin: 3px 5px 0 0;
 }
 
 .weather-detail .weather{
@@ -201,6 +201,11 @@
     padding: 15px 0;
     align-items: center;
     justify-content: center;
+}
+
+.column p{
+    font-size: 16px;
+    margin-top: -14px;
 }
 
 .column i{
