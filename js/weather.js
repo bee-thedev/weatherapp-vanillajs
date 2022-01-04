@@ -63,13 +63,13 @@ function fetchData(){
 // Function for the detailed weather section
 
 function weatherInformation(info){
-    if(info.cod ==="404"){
+    if(info.cod == "404"){
         inputText.classList.replace("pending", "error");
         inputText.innerText = `${inputField.value} is not a valid city`;
     }else{
         const city = info.name;
         const country = info.sys.country;
-        const {description, id} = info.weather[0];
+        const {description, id} = info.weather;
         const {temp, feels_like, humidity} = info.main;
 
 
