@@ -10,8 +10,8 @@ backArrow = container.querySelector("header i");
 let api;
 // In order to call api upon a key is pressed on keyboard 
 
-inputField.addEventListener("keyup", event =>{
-    if(event.key == "Enter" && inputField.value != ""){
+inputField.addEventListener("keyup", e=>{
+    if(e.key == "Enter" && inputField.value != ""){
         requestApi(inputField.value);
     }
 })
@@ -37,8 +37,8 @@ function requestApi(city){
 // Function onSuccess
 
 function onSuccess(position){
-    const {lat, lon} = position.coord;
-    api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=e6cf1c2573b763c81cb6abacb572c232`;
+    const {latitude, longitude} = position.coords;
+    api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=e6cf1c2573b763c81cb6abacb572c232`;
     fetchData();
 }
 
@@ -69,29 +69,29 @@ function weatherInformation(info){
     }else{
         const city = info.name;
         const country = info.sys.country;
-        const {description, id} = info.weather;
+        const {description, id} = info.weather[0];
         const {temp, feels_like, humidity} = info.main;
 
 
         if(id == 800){
-            weatherIcon.src = "images/clear.svg";
+            weatherIcon.src = "./images/clear.svg";
         }else if(id >= 200 && id <= 232){
-            weatherIcon.src = "images/stormy.svg";  
+            weatherIcon.src = "./images/stormy.svg";  
         }else if(id >= 600 && id <= 622){
-            weatherIcon.src = "images/snowy.svg";
+            weatherIcon.src = "./images/snow.svg";
         }else if(id >= 701 && id <= 781){
-            weatherIcon.src = "images/hazey.svg";
+            weatherIcon.src = "./images/haze.svg";
         }else if(id >= 801 && id <= 804){
-            weatherIcon.src = "images/cloudy.svg";
+            weatherIcon.src = "./images/cloud.svg";
         }else if((id >= 500 && id <= 531) || (id >= 300 && id <= 321)){
-            weatherIcon.src = "images/rain.svg";
+            weatherIcon.src = "./images/rain.svg";
         }
 
         weatherDetail.querySelector(".temperature .value").innerText = Math.floor(temp);
         weatherDetail.querySelector(".weather").innerText = `${description}`;
-        weatherDetail.querySelector(".location .span").innerText = `${city}, ${country}`;
-        weatherDetail.querySelector(".temperature .value2").innerText=Maths.floor(feels_like);
-        weatherDetail.querySelector(".humidity  span").innerText = `${humidity}`;
+        weatherDetail.querySelector(".location span").innerText = `${city}, ${country}`;
+        weatherDetail.querySelector(".temperature .value2").innerText=Math.floor(feels_like);
+        weatherDetail.querySelector(".humidity span").innerText = `${humidity}%`;
         inputText.classList.remove("pending", "error");
         inputText.innerText = " ";
         inputField.value = " ";
@@ -101,4 +101,5 @@ function weatherInformation(info){
 
 backArrow.addEventListener("click", ()=>{
     container.classList.remove("active");
-})
+});
+
