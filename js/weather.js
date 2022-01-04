@@ -85,6 +85,12 @@ function weatherInformation(info){
         }else if((id >= 500 && id <= 531) || (id >= 300 && id <= 321)){
             weatherIcon.src = "images/rain.svg";
         }
+
+        weatherDetail.querySelector(".temperature .value").innerText = Math.floor(temperature);
+        weatherDetail.querySelector(".weather").innerText = description;
+        weatherDetail.querySelector(".location .span").innerText = `${city}, ${country}`;
+
     }
 }
 
+weatherDetail.querySelector
