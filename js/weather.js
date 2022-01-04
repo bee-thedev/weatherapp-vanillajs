@@ -4,7 +4,7 @@ inputText = inputDetails.querySelector(".input-text"),
 inputField = inputDetails.querySelector("input"),
 locationButton = inputDetails.querySelector("button"),
 weatherDetail = container.querySelector(".weather-detail"),
-weatherIcon = weatherDetail.querySelector("span");
+weatherIcon = weatherDetail.querySelector("img");
 backArrow = container.querySelector("header i");
 
 let api;
@@ -16,13 +16,6 @@ inputField.addEventListener("keyup", event =>{
     }
 })
 
-// requestApi function
-
-function requestApi(city){
-    api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=your_api_key`;
-    fetchData();
-}
-
 // To get location
 
 locationButton.addEventListener("click", ()=>{
@@ -33,11 +26,19 @@ locationButton.addEventListener("click", ()=>{
     }
 });
 
+// requestApi function
+
+function requestApi(city){
+    api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=e6cf1c2573b763c81cb6abacb572c232`;
+    fetchData();
+}
+
+
 // Function onSuccess
 
 function onSuccess(position){
-    const {latitude, longitude} = position.coords;
-    api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=your_api_key`;
+    const {lat, lon} = position.coord;
+    api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=e6cf1c2573b763c81cb6abacb572c232`;
     fetchData();
 }
 
@@ -53,7 +54,7 @@ function onError(error){
 function fetchData(){
     inputText.innerText = "Getting weather detail ...";
     inputText.classList.add("pending");
-    fetch(api).then(res => res.json()).then(result => weatherDetails(result)).catch(() =>{
+    fetch(api).then(res => res.json()).then(result => weatherInformation(result)).catch(() =>{
         inputText.innerText = "Something went wrong";
         inputText.classList.replace("pending", "error");
     });
@@ -62,14 +63,14 @@ function fetchData(){
 // Function for the detailed weather section
 
 function weatherInformation(info){
-    if(info.cod == "404"){
+    if(info.cod ==="404"){
         inputText.classList.replace("pending", "error");
         inputText.innerText = `${inputField.value} is not a valid city`;
     }else{
         const city = info.name;
         const country = info.sys.country;
         const {description, id} = info.weather[0];
-        const {temp, feel_like, humidity} = info.main;
+        const {temp, feels_like, humidity} = info.main;
 
 
         if(id == 800){
@@ -86,11 +87,18 @@ function weatherInformation(info){
             weatherIcon.src = "images/rain.svg";
         }
 
-        weatherDetail.querySelector(".temperature .value").innerText = Math.floor(temperature);
-        weatherDetail.querySelector(".weather").innerText = description;
+        weatherDetail.querySelector(".temperature .value").innerText = Math.floor(temp);
+        weatherDetail.querySelector(".weather").innerText = `${description}`;
         weatherDetail.querySelector(".location .span").innerText = `${city}, ${country}`;
-
+        weatherDetail.querySelector(".temperature .value2").innerText=Maths.floor(feels_like);
+        weatherDetail.querySelector(".humidity  span").innerText = `${humidity}`;
+        inputText.classList.remove("pending", "error");
+        inputText.innerText = " ";
+        inputField.value = " ";
+        container.classList.add("active");
     }
 }
 
-weatherDetail.querySelector
+backArrow.addEventListener("click", ()=>{
+    container.classList.remove("active");
+})
